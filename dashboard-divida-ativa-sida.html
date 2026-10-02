@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Dívida ativa da União: base SIDA, 2º trimestre de 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #F3F5F7; --surface: #FFFFFF; --ink: #14213D; --ink-2: #4A5568; --ink-3: #7A8596; --line: #DDE2E8;
+  --c1: #356AFF; --c2: #E92828; --c3: #3BD973; --neutro: #494949; --roxo: #B554FF; --vermelho: #E92828;
+  --label-in: #FFFFFF;
+  box-sizing: border-box;
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0F1623; --surface: #172133; --ink: #E8ECF2; --ink-2: #B6C0CE; --ink-3: #8794A6; --line: #2A364A;
+    --neutro: #8C8C8C;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0F1623; --surface: #172133; --ink: #E8ECF2; --ink-2: #B6C0CE; --ink-3: #8794A6; --line: #2A364A;
+  --neutro: #8C8C8C;
+}
+html { scroll-padding-top: env(safe-area-inset-top, 0px); }
+*, *::before, *::after { box-sizing: inherit; }
+body {
+  margin: 0; background: var(--bg); color: var(--ink);
+  font-family: "Public Sans", "Segoe UI", system-ui, -apple-system, Roboto, Arial, sans-serif;
+  font-size: 16px; line-height: 1.55; font-variant-numeric: tabular-nums; -webkit-font-smoothing: antialiased;
+}
+.wrap { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+a { color: var(--c1); }
+a:focus-visible { outline: 3px solid var(--c1); outline-offset: 2px; }
+
+header.hero { padding: 56px 0 40px; }
+.hero h1 { font-size: clamp(1.9rem, 4.2vw, 3rem); line-height: 1.1; font-weight: 800; letter-spacing: -0.02em; margin: 0 0 14px; max-width: 22ch; }
+.hero .lead { font-size: 1.12rem; color: var(--ink-2); max-width: 64ch; margin: 0 0 32px; }
+.total { display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; margin-bottom: 18px; }
+.total strong { font-size: clamp(2.4rem, 6vw, 4rem); font-weight: 800; letter-spacing: -0.03em; line-height: 1; }
+.total span { color: var(--ink-2); }
+.facts { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
+.fact { padding: 18px 20px; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; }
+.fact b { display: block; font-size: 1.6rem; font-weight: 800; line-height: 1.15; letter-spacing: -0.01em; }
+.fact span { color: var(--ink-2); font-size: .92rem; }
+
+section.block { padding: 44px 0; border-top: 1px solid var(--line); }
+section.block > h2 { font-size: clamp(1.4rem, 2.6vw, 1.9rem); font-weight: 800; letter-spacing: -0.015em; line-height: 1.2; margin: 0 0 8px; max-width: 34ch; }
+section.block > .sub { color: var(--ink-2); margin: 0 0 28px; max-width: 70ch; }
+.grid-2 { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 20px; }
+.grid-2 + .panel, .panel + .grid-2, .grid-2 + .grid-2 { margin-top: 20px; }
+.panel { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 22px 22px 18px; min-width: 0; }
+.panel h3 { font-size: 1.02rem; font-weight: 700; margin: 0 0 4px; }
+.panel .take { color: var(--ink-2); font-size: .93rem; margin: 0 0 16px; }
+.chart { position: relative; height: 320px; }
+.chart.tall { height: 460px; }
+.chart.xtall { height: 640px; }
+.src { color: var(--ink-3); font-size: .8rem; margin: 10px 0 0; }
+
+.funnel { display: flex; flex-direction: column; gap: 10px; margin-top: 8px; }
+.funnel .row { display: grid; grid-template-columns: minmax(0, 1fr); gap: 4px; }
+.funnel .name { font-size: .9rem; color: var(--ink-2); }
+.funnel .bar-area { position: relative; height: 46px; display: flex; justify-content: center; }
+.funnel .bar { height: 100%; background: var(--c1); border-radius: 3px; min-width: 6px; }
+.funnel .val { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: .95rem; color: var(--ink); text-shadow: 0 0 4px var(--surface), 0 0 4px var(--surface); }
+.funnel .pcts { display: flex; justify-content: space-between; font-size: .8rem; color: var(--ink-3); }
+
+.recs { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+.rec { background: var(--surface); border: 1px solid var(--line); border-left: 5px solid var(--c1); border-radius: 10px; padding: 20px 22px; }
+.rec h3 { margin: 0 0 8px; font-size: 1.05rem; font-weight: 700; }
+.rec p { margin: 0 0 8px; color: var(--ink-2); font-size: .94rem; }
+.rec p:last-child { margin-bottom: 0; }
+.rec .why { color: var(--ink); }
+
+footer { border-top: 1px solid var(--line); padding: 32px 0 48px; color: var(--ink-2); font-size: .88rem; }
+footer h2 { font-size: 1rem; color: var(--ink); margin: 0 0 10px; }
+footer ul { margin: 0 0 18px; padding-left: 18px; max-width: 80ch; }
+footer li { margin-bottom: 4px; }
+
+@media (max-width: 860px) {
+  .grid-2, .recs { grid-template-columns: minmax(0, 1fr); }
+  .facts { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 480px) {
+  .wrap { padding: 0 16px; }
+  .chart { height: 300px; }
+  .chart.tall { height: 440px; }
+  .chart.xtall { height: 700px; }
+}
+@media print {
+  :root { --bg: #FFFFFF; }
+  body { background: #FFFFFF; }
+  header.hero { padding-top: 0; }
+  .panel, .rec, .fact, footer { break-inside: avoid; }
+  section.block { break-before: auto; }
+  section.block > h2 { break-after: avoid; }
+  @page { size: A4; margin: 14mm; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="hero">
+  <h1>Dívida ativa da União: quem deve, há quanto tempo e o que pode ser recuperado</h1>
+  <p class="lead">Análise da base pública SIDA da PGFN, com inscrições até 10/07/2026. Cada dívida foi contada uma única vez, pelo devedor principal. A base não inclui a dívida previdenciária nem a do FGTS.</p>
+  <div class="total"><strong>R$ 2,96 trilhões</strong><span>em 30,8 milhões de inscrições e 8,2 milhões de devedores</span></div>
+  <div class="facts">
+    <div class="fact"><b>62,8%</b><span>do estoque está em cobrança, sem negociação, garantia ou suspensão</span></div>
+    <div class="fact"><b>0,04%</b><span>dos devedores (3.270) concentram 51,3% do valor</span></div>
+    <div class="fact"><b>32,7%</b><span>do valor tem mais de 10 anos de inscrição</span></div>
+    <div class="fact"><b>47,2%</b><span>do valor vem de IRPJ, COFINS e CSLL</span></div>
+  </div>
+</header>
+
+<section class="block" aria-labelledby="s1">
+  <h2 id="s1">Onde está o estoque e como está sendo cobrado</h2>
+  <p class="sub">As inscrições ajuizadas são cerca de 20% do total (6,08 milhões), mas concentram 78% do valor (R$ 2,31 trilhões).</p>
+  <div class="grid-2">
+    <div class="panel">
+      <h3>Estoque por situação (R$ bi)</h3>
+      <p class="take">62,8% do estoque (R$ 1,86 trilhão) está em cobrança. A garantia soma 13,9% do valor em apenas 71.394 inscrições.</p>
+      <div class="chart"><canvas id="c61" aria-label="Estoque por situação, em bilhões de reais"></canvas></div>
+      <p class="src">Análise 6.1</p>
+    </div>
+    <div class="panel">
+      <h3>Valor por situação e ajuizamento (R$ bi)</h3>
+      <p class="take">A cobrança ajuizada sem garantia é o maior bloco da carteira: R$ 1,44 trilhão, 48,7% do estoque.</p>
+      <div class="chart"><canvas id="c62" aria-label="Valor por situação e ajuizamento, em bilhões de reais"></canvas></div>
+      <p class="src">Análise 6.2</p>
+    </div>
+  </div>
+  <div class="grid-2">
+    <div class="panel">
+      <h3>Funil do ajuizamento x limite de R$ 20 mil</h3>
+      <p class="take">Metade das inscrições ajuizadas tem valor individual até R$ 20 mil, mas só 1,0% continua abaixo do limite da Portaria MF nº 75/2012 quando se soma a dívida do devedor.</p>
+      <div class="funnel" id="funil"></div>
+      <p class="src">Análise 6.2.1</p>
+    </div>
+    <div class="panel">
+      <h3>Participação no valor por faixa de devedor (%)</h3>
+      <p class="take">3.270 devedores acima de R$ 100 milhões (0,04%) respondem por 51,3% do valor. Somando a faixa de R$ 15 a R$ 100 milhões, 19.804 devedores chegam a 71%.</p>
+      <div class="chart"><canvas id="c63" aria-label="Participação no valor por faixa de dívida do devedor"></canvas></div>
+      <p class="src">Análise 6.3. Empresas agrupadas pela raiz do CNPJ.</p>
+    </div>
+  </div>
+</section>
+
+<section class="block" aria-labelledby="s2">
+  <h2 id="s2">Onde estão os devedores e há quanto tempo devem</h2>
+  <p class="sub">Um terço do valor (R$ 968,5 bilhões) tem mais de 10 anos, em apenas 5,5% das inscrições.</p>
+  <div class="grid-2">
+    <div class="panel">
+      <h3>10 maiores estados: empresas x pessoas físicas (R$ bi)</h3>
+      <p class="take">SP e RJ somam 55,4% do valor. Em todos os estados, empresas respondem por mais de 75% da dívida.</p>
+      <div class="chart tall"><canvas id="c64" aria-label="10 maiores estados, empresas e pessoas físicas"></canvas></div>
+      <p class="src">Análise 6.4. A UF é a do domicílio fiscal.</p>
+    </div>
+    <div class="panel">
+      <h3>Situação do estoque por idade da dívida (%)</h3>
+      <p class="take">Entre 1 e 15 anos, a parcela em cobrança fica entre 56% e 60%. Depois dos 15 anos, sobe para 79,2% e 82,7%, e a garantia cai para 3,5%.</p>
+      <div class="chart tall"><canvas id="c65" aria-label="Situação do estoque por idade da dívida"></canvas></div>
+      <p class="src">Análise 6.5</p>
+    </div>
+  </div>
+</section>
+
+<section class="block" aria-labelledby="s3">
+  <h2 id="s3">De onde vem a dívida e quem responde por ela</h2>
+  <p class="sub">Três tributos sobre empresas respondem por quase metade do estoque, e quanto maior a dívida, mais pessoas respondem por ela.</p>
+  <div class="panel">
+    <h3>15 receitas com maior estoque (R$ bi)</h3>
+    <p class="take">IRPJ, COFINS e CSLL somam R$ 1,40 trilhão (47,2%). O Simples Nacional tem o maior número de inscrições (3,6 milhões), mas só 7,5% do valor.</p>
+    <div class="chart xtall"><canvas id="c66" aria-label="15 receitas com maior estoque"></canvas></div>
+    <p class="src">Análise 6.6. "Outras" é uma categoria da própria PGFN, e não a soma das demais receitas.</p>
+  </div>
+  <div class="panel" style="margin-top:20px">
+    <h3>Média de corresponsáveis por faixa de valor</h3>
+    <p class="take">Considerando só as inscrições que têm corresponsável, a média sobe de 1,1 pessoa abaixo de R$ 10 mil para 5,2 acima de R$ 100 milhões.</p>
+    <div class="chart"><canvas id="c67" aria-label="Média de corresponsáveis por faixa de valor da inscrição"></canvas></div>
+    <p class="src">Análise 6.7</p>
+  </div>
+</section>
+
+<section class="block" aria-labelledby="s4">
+  <h2 id="s4">Os 20 maiores devedores empresariais</h2>
+  <p class="sub">Juntos somam R$ 348,1 bilhões (11,8% do estoque). Dez têm praticamente nada em cobrança e somam R$ 231,9 bilhões; os outros dez estão quase inteiramente em cobrança, e cinco deles têm falência indicada no nome registrado (R$ 68,8 bilhões).</p>
+  <div class="panel">
+    <h3>20 maiores devedores: situação da dívida (%)</h3>
+    <div class="chart xtall"><canvas id="c68" aria-label="Situação da dívida dos 20 maiores devedores empresariais"></canvas></div>
+    <p class="src">Análise 6.8. Empresas agrupadas pela raiz do CNPJ; rótulos abaixo de 5% omitidos.</p>
+  </div>
+</section>
+
+<section class="block" aria-labelledby="s5">
+  <h2 id="s5">O que os dados sugerem fazer</h2>
+  <p class="sub">Recomendações baseadas apenas nos dados públicos. Não consideram custos operacionais nem a estratégia já adotada pela PGFN, que usa vários desses instrumentos.</p>
+  <div class="recs">
+    <div class="rec">
+      <h3>Separar a carteira em dois modelos de cobrança</h3>
+      <p class="why">Atuação individualizada para os devedores acima de R$ 15 milhões e cobrança em massa, como protesto e transação por adesão, para os abaixo de R$ 100 mil.</p>
+      <p>19.804 devedores concentram R$ 2,10 trilhões; 7,3 milhões somam 2,8% do valor.</p>
+    </div>
+    <div class="rec">
+      <h3>Agir cedo sobre a dívida recente</h3>
+      <p class="why">Priorizar cobrança e negociação no primeiro ano após a inscrição, antes que o devedor perca patrimônio.</p>
+      <p>74,5% do valor inscrito no último ano está em cobrança, sem negociação nem garantia.</p>
+    </div>
+    <div class="rec">
+      <h3>Tratar a dívida antiga como um bloco separado</h3>
+      <p class="why">Fazer triagem das inscrições com mais de 15 anos e separar, nos relatórios, o valor contábil do valor com perspectiva real de recuperação.</p>
+      <p>São 701.445 inscrições e R$ 524,2 bilhões, com cerca de 80% em cobrança.</p>
+    </div>
+    <div class="rec">
+      <h3>Usar os corresponsáveis nas execuções sem garantia</h3>
+      <p class="why">Nas dívidas acima de R$ 15 milhões, incluir a pesquisa patrimonial dos corresponsáveis na estratégia de cobrança.</p>
+      <p>Mais de um terço dessas inscrições tem corresponsável, com média de 4,2 a 5,2 pessoas.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <h2>Fonte e método</h2>
+  <ul>
+    <li>Fonte: Dados Abertos da PGFN, arquivo Dados_abertos_Nao_Previdenciario.zip do 2º trimestre de 2026 (base SIDA), com 45.553.971 linhas.</li>
+    <li>Cada inscrição aparece na base uma vez para o devedor principal e uma vez para cada corresponsável, sempre com o valor integral. Todas as métricas de valor usam só o devedor principal, uma linha por inscrição.</li>
+    <li>Valores consolidados, com juros e encargos atualizados até a data de referência (10/07/2026).</li>
+    <li>Processamento no Databricks Free Edition, em camadas bronze, silver e gold, com SQL e PySpark. Os gráficos reproduzem as visualizações do notebook.</li>
+  </ul>
+  <p>Análise de Danielli Arçari, desenvolvida como desafio da mentoria de Luiz Santana. <a href="https://linkedin.com/in/danielli-arcari">LinkedIn</a> e <a href="https://github.com/danielli-arcari">GitHub</a>.</p>
+</footer>
+
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<script>
+(function () {
+  var fmt = function (v, d) { return Number(v).toLocaleString('pt-BR', { minimumFractionDigits: d, maximumFractionDigits: d }); };
+
+  // 6.2.1 Funil
+  var funil = [
+    ['1. Inscrições ajuizadas', 6080364],
+    ['2. Com valor individual até R$ 20 mil', 3049579],
+    ['3. E com devedor até R$ 20 mil no total', 61667]
+  ];
+  var fEl = document.getElementById('funil');
+  funil.forEach(function (s, i) {
+    var pMax = 100 * s[1] / funil[0][1];
+    var pPrev = i === 0 ? 100 : 100 * s[1] / funil[i - 1][1];
+    var row = document.createElement('div');
+    row.className = 'row';
+    row.innerHTML =
+      '<div class="name">' + s[0] + '</div>' +
+      '<div class="bar-area"><div class="bar" style="width:' + pMax + '%"></div><div class="val">' + fmt(s[1], 0) + '</div></div>' +
+      '<div class="pcts"><span>' + fmt(pMax, 2) + '% do total</span><span>' + fmt(pPrev, 2) + '% da etapa anterior</span></div>';
+    fEl.appendChild(row);
+  });
+
+  if (typeof Chart === 'undefined') {
+    document.querySelectorAll('.chart').forEach(function (c) {
+      c.innerHTML = '<p class="take">Não foi possível carregar a biblioteca de gráficos. Recarregue a página.</p>';
+    });
+    return;
+  }
+
+  function css(n) { return getComputedStyle(document.documentElement).getPropertyValue(n).trim(); }
+  var FONT = 'Public Sans';
+
+  // Rótulos de dados, equivalentes ao campo Data labels do Databricks
+  var dataLabels = {
+    id: 'dataLabels',
+    afterDatasetsDraw: function (chart) {
+      var ctx = chart.ctx;
+      var horiz = chart.options.indexAxis === 'y';
+      var stacked = !!(chart.options.scales && chart.options.scales.x && chart.options.scales.x.stacked);
+      ctx.save();
+      ctx.font = '600 11px "' + FONT + '", system-ui, sans-serif';
+      chart.data.datasets.forEach(function (ds, i) {
+        var meta = chart.getDatasetMeta(i);
+        if (meta.hidden || !ds.labels) return;
+        meta.data.forEach(function (el, j) {
+          var t = ds.labels[j];
+          if (!t) return;
+          var w = ctx.measureText(t).width;
+          if (meta.type === 'line') {
+            ctx.fillStyle = css('--ink'); ctx.textAlign = 'center'; ctx.textBaseline = 'bottom';
+            ctx.fillText(t, el.x, el.y - 8);
+          } else if (stacked) {
+            var size = horiz ? Math.abs(el.x - el.base) : Math.abs(el.y - el.base);
+            if (size < w + 8) return;
+            ctx.fillStyle = css('--label-in'); ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+            if (horiz) ctx.fillText(t, (el.x + el.base) / 2, el.y); else ctx.fillText(t, el.x, (el.y + el.base) / 2);
+          } else if (horiz) {
+            var len = Math.abs(el.x - el.base);
+            ctx.textBaseline = 'middle';
+            if (len >= w + 10) { ctx.fillStyle = css('--label-in'); ctx.textAlign = 'right'; ctx.fillText(t, el.x - 5, el.y); }
+            else { ctx.fillStyle = css('--ink'); ctx.textAlign = 'left'; ctx.fillText(t, el.x + 5, el.y); }
+          } else {
+            var hgt = Math.abs(el.y - el.base);
+            ctx.textAlign = 'center';
+            if (hgt >= 22 && (el.width || 0) >= w + 4) { ctx.fillStyle = css('--label-in'); ctx.textBaseline = 'top'; ctx.fillText(t, el.x, el.y + 5); }
+            else { ctx.fillStyle = css('--ink'); ctx.textBaseline = 'bottom'; ctx.fillText(t, el.x, el.y - 4); }
+          }
+        });
+      });
+      ctx.restore();
+    }
+  };
+
+  function axisTitle(text) { return { display: true, text: text, color: css('--ink-2'), font: { family: FONT, size: 12, weight: '600' } }; }
+  function opts(o) {
+    var ink3 = css('--ink-3'), line = css('--line');
+    var tick = { color: ink3, font: { family: FONT, size: 11 } };
+    var res = {
+      responsive: true, maintainAspectRatio: false, animation: false,
+      layout: { padding: { top: 20, right: 16 } },
+      plugins: {
+        legend: { display: false, position: 'bottom', labels: { color: css('--ink-2'), boxWidth: 12, boxHeight: 12, font: { family: FONT, size: 12 } } },
+        tooltip: { titleFont: { family: FONT }, bodyFont: { family: FONT } }
+      },
+      scales: {
+        x: { ticks: tick, grid: { display: false }, border: { color: line } },
+        y: { ticks: tick, grid: { display: false }, border: { color: line } }
+      }
+    };
+    return merge(res, o || {});
+  }
+  function merge(a, b) {
+    Object.keys(b).forEach(function (k) {
+      if (b[k] && typeof b[k] === 'object' && !Array.isArray(b[k]) && a[k] && typeof a[k] === 'object') merge(a[k], b[k]); else a[k] = b[k];
+    });
+    return a;
+  }
+  var br2 = function (arr) { return arr.map(function (v) { return fmt(v, 2); }); };
+
+  var charts = [];
+  function build() {
+    charts.forEach(function (c) { c.destroy(); });
+    charts = [];
+    var c1 = css('--c1'), c2 = css('--c2'), c3 = css('--c3'), neutro = css('--neutro'), roxo = css('--roxo'), verm = css('--vermelho');
+
+    // 6.1 Coluna, eixo de valor oculto
+    var v61 = [1860.95, 603.63, 411.19, 86.04, 0.01];
+    charts.push(new Chart(document.getElementById('c61'), {
+      type: 'bar',
+      data: { labels: ['Em cobrança', 'Benefício Fiscal', 'Garantia', 'Suspenso por decisão judicial', 'Em negociação'],
+        datasets: [{ label: 'valor_bilhoes', data: v61, labels: br2(v61), backgroundColor: c1 }] },
+      options: opts({ scales: { y: { display: false, max: 2050 } },
+        plugins: { tooltip: { callbacks: { label: function (c) { return 'R$ ' + fmt(c.raw, 2) + ' bi'; } } } } }),
+      plugins: [dataLabels]
+    }));
+
+    // 6.2 Colunas agrupadas por ajuizamento
+    var aj = [1442.71, 414.83, 407.24, 47.34, 0.01], naj = [418.24, 188.81, 3.95, 38.71, 0.00];
+    charts.push(new Chart(document.getElementById('c62'), {
+      type: 'bar',
+      data: { labels: ['Em cobrança', 'Benefício Fiscal', 'Garantia', 'Suspenso por decisão judicial', 'Em negociação'],
+        datasets: [
+          { label: 'Ajuizada', data: aj, labels: br2(aj), backgroundColor: roxo },
+          { label: 'Não ajuizada', data: naj, labels: br2(naj), backgroundColor: neutro }
+        ] },
+      options: opts({ scales: { y: { display: false, max: 1620 }, x: { title: axisTitle('Situação da inscrição') } },
+        plugins: { legend: { display: true }, tooltip: { callbacks: { label: function (c) { return c.dataset.label + ': R$ ' + fmt(c.raw, 2) + ' bi'; } } } } }),
+      plugins: [dataLabels]
+    }));
+
+    // 6.3 Barras horizontais, % do valor
+    charts.push(new Chart(document.getElementById('c63'), {
+      type: 'bar',
+      data: { labels: ['1. Abaixo de R$ 10 mil', '2. R$ 10 mil a R$ 100 mil', '3. R$ 100 mil a R$ 1 milhão', '4. R$ 1 milhão a R$ 15 milhões', '5. R$ 15 milhões a R$ 100 milhões', '6. Acima de R$ 100 milhões'],
+        datasets: [{ label: 'perc_valor', data: [0.68, 2.13, 7.20, 19.05, 19.64, 51.30], labels: ['0,7%', '2,1%', '7,2%', '19,1%', '19,6%', '51,3%'], backgroundColor: c1 }] },
+      options: opts({ indexAxis: 'y', layout: { padding: { right: 44 } },
+        scales: { x: { max: 60, ticks: { callback: function (v) { return fmt(v, 0); } } }, y: { title: axisTitle('Faixa de dívida do devedor') } },
+        plugins: { tooltip: { callbacks: { label: function (c) { return fmt(c.raw, 2) + '% do valor'; } } } } }),
+      plugins: [dataLabels]
+    }));
+
+    // 6.4 Barras horizontais empilhadas, empresas e pessoas físicas
+    var pj = [1157.04, 416.94, 164.52, 127.94, 126.87, 101.36, 88.38, 71.90, 60.94, 47.45];
+    var pf = [50.36, 16.48, 13.06, 10.38, 8.40, 5.47, 11.29, 8.95, 4.20, 13.78];
+    charts.push(new Chart(document.getElementById('c64'), {
+      type: 'bar',
+      data: { labels: ['SP', 'RJ', 'MG', 'PR', 'RS', 'SC', 'BA', 'GO', 'PE', 'DF'],
+        datasets: [
+          { label: 'Pessoa jurídica', data: pj, labels: br2(pj), backgroundColor: neutro },
+          { label: 'Pessoa física', data: pf, labels: br2(pf), backgroundColor: verm }
+        ] },
+      options: opts({ indexAxis: 'y',
+        scales: { x: { stacked: true, display: false }, y: { stacked: true } },
+        plugins: { legend: { display: true }, tooltip: { callbacks: { label: function (c) { return c.dataset.label + ': R$ ' + fmt(c.raw, 2) + ' bi'; } } } } }),
+      plugins: [dataLabels]
+    }));
+
+    // 6.5 Linhas por situação
+    var ben = [8.4, 26.6, 20.8, 26.3, 10.5, 11.1], cob = [74.5, 56.7, 55.7, 59.6, 79.2, 82.7], gar = [14.8, 13.8, 20.0, 12.2, 7.1, 3.5];
+    var pct = function (arr) { return arr.map(function (v) { return fmt(v, 1) + '%'; }); };
+    var line = function (label, data, color) { return { label: label, data: data, labels: pct(data), borderColor: color, backgroundColor: color, borderWidth: 2.5, pointRadius: 4, tension: 0 }; };
+    charts.push(new Chart(document.getElementById('c65'), {
+      type: 'line',
+      data: { labels: ['1. Menos de 1 ano', '2. 1 a 5 anos', '3. 5 a 10 anos', '4. 10 a 15 anos', '5. 15 a 20 anos', '6. Mais de 20 anos'],
+        datasets: [line('Benefício Fiscal', ben, c1), line('Em cobrança', cob, c2), line('Garantia', gar, c3)] },
+      options: opts({ scales: { y: { display: false, min: 0, max: 92 }, x: { title: axisTitle('Idade da dívida') } },
+        plugins: { legend: { display: true }, tooltip: { callbacks: { label: function (c) { return c.dataset.label + ': ' + fmt(c.raw, 1) + '%'; } } } } }),
+      plugins: [dataLabels]
+    }));
+
+    // 6.6 Barras horizontais, 15 receitas
+    var rec = [618.83, 523.53, 254.99, 220.90, 194.02, 182.55, 164.22, 121.46, 117.33, 102.53, 60.08, 41.31, 33.43, 27.24, 24.26];
+    charts.push(new Chart(document.getElementById('c66'), {
+      type: 'bar',
+      data: { labels: ['IRPJ', 'COFINS', 'CSLL', 'Simples Nacional', 'IRRF', 'IPI', 'Contribuição Empresa/Empregador', 'IRPF', 'PIS', 'Multa Isolada', 'Contribuição Previdenciária Segurados', 'ITR - Exercício 1997 e posteriores', 'Contribuição Previdenciária Sobre Receita Bruta', 'Contribuição Risco Ambiental/Aposent Especial', 'Outras (categoria da PGFN)'],
+        datasets: [{ label: 'valor_bilhoes', data: rec, labels: br2(rec), backgroundColor: c1 }] },
+      options: opts({ indexAxis: 'y', layout: { padding: { right: 60 } },
+        scales: { x: { display: false, max: 680 }, y: { title: axisTitle('Receita') } },
+        plugins: { tooltip: { callbacks: { label: function (c) { return 'R$ ' + fmt(c.raw, 2) + ' bi'; } } } } }),
+      plugins: [dataLabels]
+    }));
+
+    // 6.7 Linha, média de corresponsáveis
+    var med = [1.1, 1.3, 1.8, 2.7, 4.2, 5.2];
+    charts.push(new Chart(document.getElementById('c67'), {
+      type: 'line',
+      data: { labels: ['1. Abaixo de R$ 10 mil', '2. R$ 10 mil a R$ 100 mil', '3. R$ 100 mil a R$ 1 milhão', '4. R$ 1 milhão a R$ 15 milhões', '5. R$ 15 milhões a R$ 100 milhões', '6. Acima de R$ 100 milhões'],
+        datasets: [{ label: 'Média de corresponsáveis', data: med, labels: med.map(function (v) { return fmt(v, 1); }), borderColor: c1, backgroundColor: c1, borderWidth: 2.5, pointRadius: 4, tension: 0 }] },
+      options: opts({
+        scales: {
+          y: { min: 0, max: 6, title: axisTitle('Média de corresponsáveis (inscrições com corresponsável)'), ticks: { callback: function (v) { return fmt(v, 0); } } },
+          x: { title: axisTitle('Valor da inscrição') }
+        },
+        plugins: { tooltip: { callbacks: { label: function (c) { return 'Média: ' + fmt(c.raw, 1); } } } } }),
+      plugins: [dataLabels]
+    }));
+
+    // 6.8 Barras horizontais empilhadas, % por situação
+    var nomes = ['PETROLEO BRASILEIRO S A PETROBRAS', 'VALE S.A.', 'CARITAL BRASIL LTDA FALIDO', 'BANCO SANTANDER BRASIL S.A.', 'AMBEV S.A.', 'INDUSTRIAS DE PAPEL R RAMENZONI SA', 'PPL PARTICIPACOES LTDA. FALIDO', 'COMPANHIA SIDERURGICA NACIONAL', 'RRJ CREDIT LTDA', 'DUAGRO ADMINISTRACAO E PARTICIPACOES LTDA', 'BANCO BRADESCO S.A.', 'TINTO HOLDING LTDA MASSA FALIDA', 'VIACAO AEREA SAO PAULO S A', 'BASE ENGENHARIA E SERVICOS DE PETROLEO E GAS S.A. FALIDO', 'SAMARCO MINERACAO S.A.', 'UNILEVER BRASIL INDUSTRIAL LTDA', 'RAGI REFRIGERANTES LTDA', 'AXIA ENERGIA', 'VIACAO AEREA RIOGRANDENSE S A FALIDA', 'YMPACTUS COMERCIAL S.A.'];
+    var s68 = {
+      ben: [46.7, 89.4, 0.0, 47.5, 0.5, 0.4, 0.0, 0.7, 0.0, 0.0, 26.2, 0.0, 0.0, 0.0, 41.6, 0.0, 0.0, 0.0, 0.0, 100.0],
+      cob: [0.1, 0.0, 99.3, 1.0, 0.0, 99.6, 100.0, 0.0, 100.0, 100.0, 0.0, 88.7, 68.8, 100.0, 0.0, 0.0, 91.1, 0.0, 100.0, 0.0],
+      gar: [52.0, 10.6, 0.0, 49.1, 98.2, 0.0, 0.0, 79.0, 0.0, 0.0, 73.8, 11.3, 0.0, 0.0, 21.5, 100.0, 0.0, 100.0, 0.0, 0.0],
+      sus: [1.2, 0.0, 0.7, 2.5, 1.2, 0.0, 0.0, 20.4, 0.0, 0.0, 0.1, 0.0, 31.2, 0.0, 36.9, 0.0, 8.9, 0.0, 0.0, 0.0]
+    };
+    var lab0 = function (arr) { return arr.map(function (v) { return v < 5 ? '' : fmt(v, 0) + '%'; }); };
+    var seg = function (label, data, color) { return { label: label, data: data, labels: lab0(data), backgroundColor: color }; };
+    charts.push(new Chart(document.getElementById('c68'), {
+      type: 'bar',
+      data: { labels: nomes, datasets: [
+        seg('Benefício Fiscal', s68.ben, c1), seg('Em cobrança', s68.cob, c2), seg('Garantia', s68.gar, c3), seg('Suspenso por decisão judicial', s68.sus, neutro)
+      ] },
+      options: opts({ indexAxis: 'y',
+        scales: { x: { stacked: true, display: false, max: 100 }, y: { stacked: true, ticks: { font: { size: 10 }, callback: function (v) { var n = nomes[v]; return n.length > 34 ? n.slice(0, 33) + '…' : n; } } } },
+        plugins: { legend: { display: true }, tooltip: { callbacks: { title: function (c) { return nomes[c[0].dataIndex]; }, label: function (c) { return c.dataset.label + ': ' + fmt(c.raw, 1) + '%'; } } } } }),
+      plugins: [dataLabels]
+    }));
+  }
+
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(build); else build();
+  try { window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', build); } catch (e) {}
+  new MutationObserver(build).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+})();
+</script>
+</body>
+</html>
