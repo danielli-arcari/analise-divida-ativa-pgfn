@@ -4,7 +4,17 @@ A dívida ativa da União soma R$ 2,96 trilhões na base SIDA da PGFN. Parece di
 
 ![Principais achados da análise](relatorio-divida-ativa-linkedin.png)
 
-**[Abrir o notebook completo](https://danielli-arcari.github.io/analise-divida-ativa-pgfn/analise-divida-ativa-sida.html)**, com código, resultados, gráficos, memória de cálculo e recomendações.
+## Arquivos do projeto
+
+| O que é | Arquivo | Como abrir |
+|---|---|---|
+| Dashboard interativo | [dashboard-divida-ativa-sida.html](dashboard-divida-ativa-sida.html) | [Ver no navegador](https://htmlpreview.github.io/?https://github.com/danielli-arcari/analise-divida-ativa-pgfn/blob/main/dashboard-divida-ativa-sida.html) |
+| Dashboard em PDF | [dashboard-divida-ativa-sida.pdf](dashboard-divida-ativa-sida.pdf) | Abre direto no GitHub |
+| Notebook completo, com código, resultados e gráficos | [Notebook/analise-divida-ativa-sida.html](Notebook/analise-divida-ativa-sida.html) | [Ver no navegador](https://htmlpreview.github.io/?https://github.com/danielli-arcari/analise-divida-ativa-pgfn/blob/main/Notebook/analise-divida-ativa-sida.html) |
+| Notebook para importar no Databricks | [Notebook/analise-divida-ativa-sida.dbc](Notebook/analise-divida-ativa-sida.dbc) | Baixar e importar no workspace |
+| Código-fonte do notebook | [Notebook/analise-divida-ativa-sida.py](Notebook/analise-divida-ativa-sida.py) | Abre direto no GitHub |
+
+Os arquivos HTML não abrem como página dentro do GitHub, que mostra só o código. Use o link "Ver no navegador" ou baixe o arquivo e abra no seu navegador.
 
 Projeto desenvolvido como desafio da mentoria de Luiz Santana e publicado também no [LinkedIn](https://linkedin.com/in/danielli-arcari).
 
@@ -20,15 +30,15 @@ A primeira versão deste projeto tinha dois erros. Os valores estavam multiplica
 
 Transformar dados em informação útil para decisão, indo além dos gráficos: métricas explicadas, regras de negócio documentadas, recomendações e próximos passos. A tabela abaixo mostra onde cada item proposto na mentoria está respondido.
 
-| Item do desafio | Onde está |
+| Item do desafio | Onde está neste README |
 |---|---|
-| 1. Base de dados | Base própria: dados abertos da PGFN ([Fonte e tabelas](#fonte-e-tabelas)) |
-| 2. Métricas e visualizações | 8 análises e 9 gráficos no Databricks ([O que os dados mostraram](#o-que-os-dados-mostraram)) |
+| 1. Base de dados | Base própria, com dados abertos da PGFN: seção "Fonte e tabelas" |
+| 2. Métricas e visualizações | 8 análises e 9 gráficos no Databricks: seção "O que os dados mostraram" e dashboard |
 | 3. Compartilhamento | Post no LinkedIn com a imagem acima |
-| 4. Memória de cálculo e análise | [Regras de negócio](#regras-de-negócio), [Métricas](#métricas) e [Decisões de negócio](#decisões-de-negócio) |
-| 5. Fontes e objetivos | [Fonte e tabelas](#fonte-e-tabelas) e coluna "Pergunta de negócio" das análises |
-| 6. Melhorias e decisões | [Decisões de negócio](#decisões-de-negócio) e [Melhorias e próximos passos](#melhorias-e-próximos-passos) |
-| 7. Documentação e portfólio | Este README e o notebook completo |
+| 4. Memória de cálculo e análise | Seções "Regras de negócio", "Métricas" e "Decisões de negócio" |
+| 5. Fontes e objetivos | Seção "Fonte e tabelas" e coluna "Pergunta de negócio" das análises |
+| 6. Melhorias e decisões | Seções "Decisões de negócio" e "Melhorias e próximos passos" |
+| 7. Documentação e portfólio | Este README, o notebook completo e o dashboard |
 
 ## Como fiz
 
@@ -138,7 +148,7 @@ Essas recomendações partem só dos dados públicos. Não consideram custos ope
 - **Dados cadastrais:** cruzar a raiz do CNPJ com os dados abertos da Receita Federal para identificar empresas baixadas ou falidas com mais precisão.
 - **Contexto econômico:** comparar a participação de cada estado no estoque com sua participação no PIB.
 - **Qualidade e automação:** transformar as conferências manuais em testes automáticos e agendar a carga trimestral com Databricks Jobs.
-- **Dashboard:** montar um painel de acompanhamento no Databricks com os indicadores principais.
+- **Dashboard no Databricks:** levar o painel de acompanhamento para dentro da plataforma, atualizado a cada carga.
 
 ---
 
