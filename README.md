@@ -8,7 +8,7 @@ A dívida ativa da União soma R$ 2,96 trilhões na base SIDA da PGFN. Parece di
 
 | O que é | Arquivo | Como abrir |
 |---|---|---|
-| Dashboard interativo | [dashboard-divida-ativa-sida.html](dashboard-divida-ativa-sida.html) | [Ver no navegador](https://htmlpreview.github.io/?https://github.com/danielli-arcari/analise-divida-ativa-pgfn/blob/main/dashboard-divida-ativa-sida.html) |
+| Dashboard em HTML | [dashboard-divida-ativa-sida.html](dashboard-divida-ativa-sida.html) | [Ver no navegador](https://htmlpreview.github.io/?https://github.com/danielli-arcari/analise-divida-ativa-pgfn/blob/main/dashboard-divida-ativa-sida.html) |
 | Dashboard em PDF | [dashboard-divida-ativa-sida.pdf](dashboard-divida-ativa-sida.pdf) | Abre direto no GitHub |
 | Notebook completo, com código, resultados e gráficos | [Notebook/analise-divida-ativa-sida.html](Notebook/analise-divida-ativa-sida.html) | [Ver no navegador](https://htmlpreview.github.io/?https://github.com/danielli-arcari/analise-divida-ativa-pgfn/blob/main/Notebook/analise-divida-ativa-sida.html) |
 | Notebook para importar no Databricks | [Notebook/analise-divida-ativa-sida.dbc](Notebook/analise-divida-ativa-sida.dbc) | Baixar e importar no workspace |
